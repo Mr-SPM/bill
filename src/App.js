@@ -1,22 +1,21 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Content from './components/Content';
+import Add from './app/Add';
+
 const BasicExample = () => (
-  <Router class="height100">
-    <div class="my-content height100">
+  <Router className="height100">
+    <div className="my-content height100">
       <div className="detail-content">
         <Route exact path="/" component={Content} />
+        <Route exact path="/add" component={Add} />
       </div>
       <footer>
-        <NavBar></NavBar>
+        <NavBar />
       </footer>
     </div>
-
   </Router>
 );
-
-
-
 
 export default BasicExample;

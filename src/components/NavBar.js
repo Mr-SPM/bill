@@ -4,13 +4,13 @@ const NavBar = () => (
     <nav>
         <ul className="nav nav-pills nav-fill">
             <li className="nav-item">
-                <Link className="nav-link" to="/">Home</Link>
+                <Link className="nav-link" to="/">Static</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="/about">About</Link>
+                <Link className="nav-link" to="/add"><i className="iconfont">&#xe64e;</i></Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="/topics">Topics</Link>
+                <Link className="nav-link" to="/topics">?</Link>
             </li>
         </ul>
     </nav>
