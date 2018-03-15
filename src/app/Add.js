@@ -7,7 +7,7 @@ class Add extends Component {
     this.state = {
       input: '',
       time: new Date().toLocaleDateString(),
-      price: '',
+      price: '0',
       categoryId: 1,
       use: ''
     };
@@ -53,7 +53,7 @@ class Add extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="height100">
         <div className="add-title">
           <i className="iconfont">&#xe626;</i>
           <div className="form-inline form-control-sm">
@@ -86,7 +86,7 @@ class Add extends Component {
         <div className="calculator">
           <div className="price-ctn">
             <div className="processing">{this.state.input}</div>
-            <div className="result">{this.state.price}</div>
+            <div className="result">￥{this.state.price}</div>
           </div>
           <button className="facker-btn" onClick={this.numberClick}>7</button>
           <button className="facker-btn" onClick={this.numberClick}>8</button>

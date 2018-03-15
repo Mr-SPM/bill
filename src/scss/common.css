@@ -56,7 +56,8 @@
   display: flex;
   flex-direction: column; }
   .my-content .detail-content {
-    flex-grow: 1; }
+    height: calc(100% - 40px);
+    position: relative; }
 
 .add-title {
   text-align: center;
