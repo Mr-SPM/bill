@@ -7,7 +7,7 @@ class Add extends Component {
     this.state = {
       time: new Date().toLocaleDateString(),
       price: '',
-      categoryId: '',
+      categoryId: 1,
       use: ''
     };
   }
@@ -16,6 +16,11 @@ class Add extends Component {
       [type]: e.target.value
     });
   };
+  categoryIdChange = (id) => {
+    this.setState({
+      categoryId: id
+    })
+  }
   render() {
     return (
       <div>
@@ -47,7 +52,7 @@ class Add extends Component {
             />
           </div>
         </div>
-        <Categories/>
+        <Categories defaultId={this.state.categoryId} clickFunc={this.categoryIdChange.bind(this)} />
       </div>
     );
   }
