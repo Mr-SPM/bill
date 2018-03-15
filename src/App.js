@@ -6,8 +6,8 @@ import Add from './app/Add';
 
 const BasicExample = () => (
   <Router className="height100">
-    <div className="my-content height100">
-      <div className="detail-content">
+    <div className="flex-column height100">
+      <div className="flex-content">
         <Route exact path="/" component={Content} />
         <Route exact path="/add" component={Add} />
       </div>

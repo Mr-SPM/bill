@@ -17,44 +17,58 @@ class Add extends Component {
       [type]: e.target.value
     });
   };
-  categoryIdChange = (id,
-    use) => {
+  categoryIdChange = (id, use) => {
     this.setState({
       categoryId: id,
       use: use
-    })
-  }
-  numberClick = (e) => {
+    });
+  };
+  numberClick = e => {
     let temp = this.state.input;
     let tempPrice = this.state.price;
     if (e.target.innerHTML === '←') {
-
-      if ((temp.charAt(temp.length - 1) !== '+' || temp.charAt(temp.length - 1) !== '-')) {
+      if (
+        temp.charAt(temp.length - 1) !== '+' ||
+        temp.charAt(temp.length - 1) !== '-'
+      ) {
         temp = temp.substring(0, temp.length - 1);
       } else {
         temp = temp.substring(0, temp.length - 1);
         tempPrice = eval(temp).toFixed(2);
       }
-    } else if (e.target.innerHTML === '+' || e.target.innerHTML === '-' || e.target.innerHTML === '.') {
-      if ((temp.charAt(temp.length - 1) === '+' || temp.charAt(temp.length - 1) === '-' || temp.charAt(temp.length - 1) === '.')) {
-        return
+    } else if (
+      e.target.innerHTML === '+' ||
+      e.target.innerHTML === '-' ||
+      e.target.innerHTML === '.'
+    ) {
+      if (
+        temp.charAt(temp.length - 1) === '+' ||
+        temp.charAt(temp.length - 1) === '-' ||
+        temp.charAt(temp.length - 1) === '.'
+      ) {
+        return;
       } else {
         temp += e.target.innerHTML;
       }
-    }
-    else {
+    } else {
       temp += e.target.innerHTML;
-      tempPrice = eval(temp).toFixed(2);;
+      tempPrice = eval(temp).toFixed(2);
     }
     this.setState({
       price: tempPrice,
       input: temp
     });
   };
+  resetPrice = () => {
+    this.setState({
+      input: '',
+      price: '0'
+    });
+  };
   render() {
     return (
-      <div className="height100">
-        <div className="top-ctn">
+      <div className="flex-column inherit-all">
+        <div className="flex-content">
           <div className="add-title">
             <i className="iconfont">&#xe626;</i>
             <div className="form-inline form-control-sm">
@@ -83,29 +97,64 @@ class Add extends Component {
               />
             </div>
           </div>
-          <Categories defaultId={this.state.categoryId} clickFunc={this.categoryIdChange.bind(this)} />
+          <Categories
+            defaultId={this.state.categoryId}
+            clickFunc={this.categoryIdChange.bind(this)}
+          />
         </div>
         <div className="calculator">
           <div className="price-ctn">
             <div className="processing">{this.state.input}</div>
             <div className="result">￥{this.state.price}</div>
           </div>
-          <button className="facker-btn" onClick={this.numberClick}>7</button>
-          <button className="facker-btn" onClick={this.numberClick}>8</button>
-          <button className="facker-btn" onClick={this.numberClick}>9</button>
-          <button className="facker-btn" onClick={this.numberClick}>←</button>
-          <button className="facker-btn" onClick={this.numberClick}>4</button>
-          <button className="facker-btn" onClick={this.numberClick}>5</button>
-          <button className="facker-btn" onClick={this.numberClick}>6</button>
-          <button className="facker-btn" onClick={this.numberClick}>+</button>
-          <button className="facker-btn" onClick={this.numberClick}>1</button>
-          <button className="facker-btn" onClick={this.numberClick}>2</button>
-          <button className="facker-btn" onClick={this.numberClick}>3</button>
-          <button className="facker-btn" onClick={this.numberClick}>-</button>
-          <button className="facker-btn" onClick={this.numberClick}>Reset</button>
-          <button className="facker-btn" onClick={this.numberClick}>0</button>
-          <button className="facker-btn" onClick={this.numberClick}>.</button>
-          <button className="facker-btn" onClick={this.numberClick}>√</button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            7
+          </button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            8
+          </button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            9
+          </button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            ←
+          </button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            4
+          </button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            5
+          </button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            6
+          </button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            +
+          </button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            1
+          </button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            2
+          </button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            3
+          </button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            -
+          </button>
+          <button className="facker-btn" onClick={this.resetPrice}>
+            Reset
+          </button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            0
+          </button>
+          <button className="facker-btn" onClick={this.numberClick}>
+            .
+          </button>
+          <button className="facker-btn" >
+            √
+          </button>
         </div>
       </div>
     );
