@@ -5,6 +5,7 @@ class Add extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      input: '',
       time: new Date().toLocaleDateString(),
       price: '',
       categoryId: 1,
@@ -16,11 +17,40 @@ class Add extends Component {
       [type]: e.target.value
     });
   };
-  categoryIdChange = (id) => {
+  categoryIdChange = (id,
+    use) => {
     this.setState({
-      categoryId: id
+      categoryId: id,
+      use: use
     })
   }
+  numberClick = (e) => {
+    let temp = this.state.input;
+    let tempPrice = this.state.price;
+    if (e.target.innerHTML === '←') {
+
+      if ((temp.charAt(temp.length - 1) !== '+' || temp.charAt(temp.length - 1) !== '-')) {
+        temp = temp.substring(0, temp.length - 1);
+      } else {
+        temp = temp.substring(0, temp.length - 1);
+        tempPrice = eval(temp).toFixed(2);
+      }
+    } else if (e.target.innerHTML === '+' || e.target.innerHTML === '-' || e.target.innerHTML === '.') {
+      if ((temp.charAt(temp.length - 1) === '+' || temp.charAt(temp.length - 1) === '-' || temp.charAt(temp.length - 1) === '.')) {
+        return
+      } else {
+        temp += e.target.innerHTML;
+      }
+    }
+    else {
+      temp += e.target.innerHTML;
+      tempPrice = eval(temp).toFixed(2);;
+    }
+    this.setState({
+      price: tempPrice,
+      input: temp
+    });
+  };
   render() {
     return (
       <div>
@@ -53,6 +83,28 @@ class Add extends Component {
           </div>
         </div>
         <Categories defaultId={this.state.categoryId} clickFunc={this.categoryIdChange.bind(this)} />
+        <div className="calculator">
+          <div className="price-ctn">
+            <div className="processing">{this.state.input}</div>
+            <div className="result">{this.state.price}</div>
+          </div>
+          <button className="facker-btn" onClick={this.numberClick}>7</button>
+          <button className="facker-btn" onClick={this.numberClick}>8</button>
+          <button className="facker-btn" onClick={this.numberClick}>9</button>
+          <button className="facker-btn" onClick={this.numberClick}>←</button>
+          <button className="facker-btn" onClick={this.numberClick}>4</button>
+          <button className="facker-btn" onClick={this.numberClick}>5</button>
+          <button className="facker-btn" onClick={this.numberClick}>6</button>
+          <button className="facker-btn" onClick={this.numberClick}>+</button>
+          <button className="facker-btn" onClick={this.numberClick}>1</button>
+          <button className="facker-btn" onClick={this.numberClick}>2</button>
+          <button className="facker-btn" onClick={this.numberClick}>3</button>
+          <button className="facker-btn" onClick={this.numberClick}>-</button>
+          <button className="facker-btn" onClick={this.numberClick}>Reset</button>
+          <button className="facker-btn" onClick={this.numberClick}>0</button>
+          <button className="facker-btn" onClick={this.numberClick}>.</button>
+          <button className="facker-btn" onClick={this.numberClick}>√</button>
+        </div>
       </div>
     );
   }

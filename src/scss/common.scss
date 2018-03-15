@@ -95,13 +95,75 @@
 }
 
 .categories {
+    background-color: #f2f2f2;
+    padding-top: 16px;
+    border-radius: 5px;
     text-align: center;
     .category-item {
         width: 20%;
         display: flex;
         flex-direction: column;
+        i {
+            font-size: 1.6rem;
+        }
         &.actived {
             color: #007bff;
         }
+    }
+    .use-ctn {
+        .text-use {
+            display: block;
+            width: 100%;
+            text-align: left;
+            color: #333;
+            border: 0;
+            padding: 5px 0;
+            background: inherit;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e4e4e4;
+        }
+        .use-list {
+            padding: 10px 0;
+            display: flex;
+            align-content: center;
+            overflow-x: auto;
+            .use-item {
+                display: inline-block;
+                min-width: 60px;
+                height: 24px;
+                line-height: 24px;
+                border-radius: 5px;
+                background-color: rgba(0, 0, 0, 0.3);
+                color: #fff;
+                &+.use-item {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}
+
+.calculator {
+    background-color: #000;
+    color: #fff;
+    padding-top: 10px;
+    .price-ctn {
+        text-align: right;
+        .processing {
+            height: 16px;
+            font-size: 12px;
+        }
+        .result {
+            height: 30px;
+            font-size: 24px;
+        }
+    }
+    .facker-btn {
+        border: 0;
+        height: 30px;
+        background-color: inherit;
+        color: #fff;
+        width: 25%;
+        display: inline-block;
     }
 }
