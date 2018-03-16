@@ -101,7 +101,7 @@ class Chart extends Component {
                 <div className="data-ctn">
                     <div className="top-ctn">
                         <span className="data-title">损益统计</span>
-                        <span className={this.state.income - this.state.pay >= 0 ? 'data-price' : 'data-price red'}>￥{this.state.income - this.state.pay}</span>
+                        <span className={this.state.income - this.state.pay >= 0 ? 'data-price' : 'data-price red'}>￥{(this.state.income - this.state.pay).toFixed(2)}</span>
                     </div>
                     <div className="detail-ctn">
                         <ul>
@@ -110,7 +110,7 @@ class Chart extends Component {
                                     <li key={index}>
                                         <span>{item.name}</span>
                                         <span className='float-r'>
-                                            ￥{item.value}</span></li>
+                                            ￥{item.value.toFixed(2)}</span></li>
                                 )
                             })}
                         </ul></div>
