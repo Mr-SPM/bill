@@ -8,7 +8,7 @@ class Chart extends Component {
         this.state = {
             time: new Date().toLocaleString(),
             income: '',
-            detail: {},
+            detail: [],
             pay: ''
         }
     }
@@ -87,7 +87,7 @@ class Chart extends Component {
             ]
         });
         this.setState({
-            income, pay, detail
+            income, pay, detail: dataForShow
         });
 
     }
@@ -103,6 +103,17 @@ class Chart extends Component {
                         <span className="data-title">损益统计</span>
                         <span className={this.state.income - this.state.pay >= 0 ? 'data-price' : 'data-price red'}>￥{this.state.income - this.state.pay}</span>
                     </div>
+                    <div className="detail-ctn">
+                        <ul>
+                            {this.state.detail.map((item, index) => {
+                                return (
+                                    <li key={index}>
+                                        <span>{item.name}</span>
+                                        <span className='float-r'>
+                                            ￥{item.value}</span></li>
+                                )
+                            })}
+                        </ul></div>
                 </div>
             </div>
         );

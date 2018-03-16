@@ -47,15 +47,18 @@
 
 .flex-column {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  overflow-y: auto; }
 
 .flex-content {
   flex: auto;
-  position: relative; }
+  position: relative;
+  overflow-y: auto; }
   .flex-content .inherit-all {
     position: absolute;
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    overflow-y: auto; }
 
 .customer {
   color: aqua;
@@ -159,9 +162,13 @@
   padding: 0 15px; }
   .chart .data-ctn .top-ctn {
     text-align: right;
+    margin-top: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     line-height: 20px;
     padding: 5px 0px;
-    border-bottom: 1px solid #f2f2f2; }
+    background-color: beige;
+    border-bottom: 1px solid #333; }
     .chart .data-ctn .top-ctn .data-title {
       font-size: 20px;
       color: burlywood; }
@@ -172,3 +179,16 @@
       color: greenyellow; }
       .chart .data-ctn .top-ctn .data-price.red {
         color: red; }
+  .chart .data-ctn .detail-ctn ul {
+    padding: 0; }
+    .chart .data-ctn .detail-ctn ul li {
+      padding: 5px 15px;
+      list-style: none;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      font-size: 16px;
+      background-color: #f2f2f2; }
+      .chart .data-ctn .detail-ctn ul li .float-r {
+        float: right; }
+    .chart .data-ctn .detail-ctn ul li + li {
+      border-top: 1px dotted slateblue; }

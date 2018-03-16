@@ -72,7 +72,6 @@ class Add extends Component {
     });
   };
   AddClick = () => {
-    debugger;
     let req = {
       time: this.state.time,
       price: this.state.price,
