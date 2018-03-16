@@ -21,6 +21,7 @@ class Categories extends Component {
       useList: this.state.list[id - 1].children,
       use: this.state.list[id - 1].children[0]
     });
+    this.props.clickFunc(id, this.state.list[id - 1].children[0]);
   }
   handleInp = (e) => {
     this.setState({

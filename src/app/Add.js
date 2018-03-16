@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Categories from '../components/Categories';
+import store from '../services/localStorage';
 
 class Add extends Component {
   constructor(props) {
@@ -27,14 +28,19 @@ class Add extends Component {
     let temp = this.state.input;
     let tempPrice = this.state.price;
     if (e.target.innerHTML === '←') {
-      if (
-        temp.charAt(temp.length - 1) !== '+' ||
-        temp.charAt(temp.length - 1) !== '-'
-      ) {
-        temp = temp.substring(0, temp.length - 1);
+      temp = temp.substring(0, temp.length - 1);
+      if (temp !== '') {
+        if (
+          temp.charAt(temp.length - 1) !== '+' &&
+          temp.charAt(temp.length - 1) !== '-'
+        ) {
+          tempPrice = eval(temp).toFixed(2);
+        } else {
+
+          tempPrice = eval(temp.substring(0, temp.length - 1)).toFixed(2);
+        }
       } else {
-        temp = temp.substring(0, temp.length - 1);
-        tempPrice = eval(temp).toFixed(2);
+        tempPrice = 0;
       }
     } else if (
       e.target.innerHTML === '+' ||
@@ -44,7 +50,7 @@ class Add extends Component {
       if (
         temp.charAt(temp.length - 1) === '+' ||
         temp.charAt(temp.length - 1) === '-' ||
-        temp.charAt(temp.length - 1) === '.'
+        temp.charAt(temp.length - 1) === '.' || temp === ''
       ) {
         return;
       } else {
@@ -65,6 +71,17 @@ class Add extends Component {
       price: '0'
     });
   };
+  AddClick = () => {
+    debugger;
+    let req = {
+      time: this.state.time,
+      price: this.state.price,
+      categoryId: this.state.categoryId,
+      use: this.state.use
+    }
+    store.add(req);
+    this.props.history.push('/');
+  }
   render() {
     return (
       <div className="flex-column inherit-all">
@@ -82,7 +99,7 @@ class Add extends Component {
               />
             </div>
           </div>
-          <div className="price">
+          {/* <div className="price">
             <div className="input-group input-group-lg">
               <div className="input-group-prepend">
                 <span className="input-group-text">
@@ -96,7 +113,7 @@ class Add extends Component {
                 onChange={this.handleChange.bind(this, 'price')}
               />
             </div>
-          </div>
+          </div> */}
           <Categories
             defaultId={this.state.categoryId}
             clickFunc={this.categoryIdChange.bind(this)}
@@ -152,7 +169,7 @@ class Add extends Component {
           <button className="facker-btn" onClick={this.numberClick}>
             .
           </button>
-          <button className="facker-btn" >
+          <button className="facker-btn" onClick={this.AddClick}>
             √
           </button>
         </div>
