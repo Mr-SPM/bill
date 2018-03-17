@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Content from '../components/Content';
+import Content from '../app/Content';
 import Add from '../app/Add';
 import Chart from '../app/Chart';
 const routeConfig = [

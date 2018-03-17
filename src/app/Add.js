@@ -2,12 +2,22 @@ import React, { Component } from 'react';
 import Categories from '../components/Categories';
 import store from '../services/localStorage';
 
+const dateFormat = date => {
+  let list = date.split('/');
+  if (list[1].length === 1) {
+    list[1] = '0' + list[1];
+  }
+  if (list[2].length === 1) {
+    list[2] = '0' + list[2];
+  }
+  return list.join('-');
+};
 class Add extends Component {
   constructor(props) {
     super(props);
     this.state = {
       input: '',
-      time: new Date().toLocaleDateString(),
+      time: dateFormat(new Date().toLocaleDateString()),
       price: '0',
       categoryId: 1,
       use: ''
@@ -36,7 +46,6 @@ class Add extends Component {
         ) {
           tempPrice = eval(temp).toFixed(2);
         } else {
-
           tempPrice = eval(temp.substring(0, temp.length - 1)).toFixed(2);
         }
       } else {
@@ -50,7 +59,8 @@ class Add extends Component {
       if (
         temp.charAt(temp.length - 1) === '+' ||
         temp.charAt(temp.length - 1) === '-' ||
-        temp.charAt(temp.length - 1) === '.' || temp === ''
+        temp.charAt(temp.length - 1) === '.' ||
+        temp === ''
       ) {
         return;
       } else {
@@ -73,14 +83,14 @@ class Add extends Component {
   };
   AddClick = () => {
     let req = {
-      time: this.state.time,
+      time: this.state.time || new Date().toLocaleDateString(),
       price: this.state.price,
       categoryId: this.state.categoryId,
       use: this.state.use
-    }
+    };
     store.add(req);
     this.props.history.push('/');
-  }
+  };
   render() {
     return (
       <div className="flex-column inherit-all">
@@ -90,9 +100,10 @@ class Add extends Component {
             <div className="form-inline form-control-sm">
               <input
                 className="form-control"
-                type="datetime"
+                type="date"
                 name="time"
-                id="time1"
+                id="my-time"
+                placeholder="今日"
                 value={this.state.time}
                 onChange={this.handleChange.bind(this, 'time')}
               />
