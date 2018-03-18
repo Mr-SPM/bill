@@ -1,37 +1,38 @@
 import React, { Component } from 'react';
-import Store from '../services/localStorage';
+// import Store from '../services/localStorage';
 import echarts from 'echarts';
+import DB from '../services/db';
+import moment from 'moment';
 
-const dateFormat = date => {
-  let list = date.split('/');
-  if (list[1].length === 1) {
-    list[1] = '0' + list[1];
-  }
-  if (list[2].length === 1) {
-    list[2] = '0' + list[2];
-  }
-  return list[0] + '-' + list[1];
-};
 class Chart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: dateFormat(new Date().toLocaleDateString()),
+      time: moment().format('YYYY-MM'),
       income: '',
       detail: [],
       pay: ''
     };
   }
   handleChange = e => {
-    this.setState({
-      time: e.target.value
-    });
+    // this.setState({
+    //   time: e.target.value
+    // });
+    this.initStaticChart(e.target.value);
   };
-  componentDidMount() {
+  initStaticChart = async time => {
     let income = 0;
     let pay = 0;
     let detail = {};
-    let data = Store.fetch();
+    let range = {
+      start: moment(time || moment().format('YYYY-MM'))
+        .startOf('month')
+        .format('YYYY-MM-DD'),
+      end: moment(time || moment().format('YYYY-MM'))
+        .endOf('month')
+        .format('YYYY-MM-DD')
+    };
+    let data = await DB.indexFilter('time', range);
     let array = [
       'Eat',
       'Drink',
@@ -45,6 +46,7 @@ class Chart extends Component {
       'Income'
     ];
     data.forEach(item => {
+      item = item.value;
       if (detail[array[item.categoryId - 1]] === undefined) {
         detail[array[item.categoryId - 1]] = 0;
       }
@@ -88,7 +90,7 @@ class Chart extends Component {
         {
           name: '类别',
           type: 'pie',
-          radius: ['35%', '60%'],
+          radius: ['30%', '45%'],
           center: ['50%', '50%'],
           data: dataForShow,
           label: {
@@ -110,18 +112,43 @@ class Chart extends Component {
     this.setState({
       income,
       pay,
-      detail: dataForShow
+      detail: dataForShow,
+      time: time || moment().format('YYYY-MM')
     });
+  };
+  changeTime = months => {
+    this.handleChange({
+      target: {
+        value: moment(this.state.time)
+          .add(months, 'month')
+          .format('YYYY-MM')
+      }
+    });
+  };
+  componentDidMount() {
+    this.initStaticChart();
   }
   render() {
     return (
       <div className="chart flex-column">
         <div className="time-bar">
+          <a>
+            <i
+              className="iconfont icon-arrow-left"
+              onClick={this.changeTime.bind(this, -1)}
+            />
+          </a>
           <input
             type="month"
             value={this.state.time}
             onChange={this.handleChange}
           />
+          <a>
+            <i
+              className="iconfont icon-arrow-right"
+              onClick={this.changeTime.bind(this, 1)}
+            />
+          </a>
         </div>
         <div id="myCharts" />
         <div className="data-ctn">

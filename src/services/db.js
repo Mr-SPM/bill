@@ -206,6 +206,6 @@ export default {
   },
   async indexFilter(name, range) {
     const store = await dbOp.openStore();
-    await dbOp.indexFilter(store, name, range);
+    return dbOp.indexFilter(store, name, range);
   }
 };

@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'iconfont';
   /* project id 591567 */
-  src: url("//at.alicdn.com/t/font_591567_8g186ccjs7l23xr.eot");
-  src: url("//at.alicdn.com/t/font_591567_8g186ccjs7l23xr.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_591567_8g186ccjs7l23xr.woff") format("woff"), url("//at.alicdn.com/t/font_591567_8g186ccjs7l23xr.ttf") format("truetype"), url("//at.alicdn.com/t/font_591567_8g186ccjs7l23xr.svg#iconfont") format("svg"); }
+  src: url("//at.alicdn.com/t/font_591567_sq0kado2egue4s4i.eot");
+  src: url("//at.alicdn.com/t/font_591567_sq0kado2egue4s4i.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_591567_sq0kado2egue4s4i.woff") format("woff"), url("//at.alicdn.com/t/font_591567_sq0kado2egue4s4i.ttf") format("truetype"), url("//at.alicdn.com/t/font_591567_sq0kado2egue4s4i.svg#iconfont") format("svg"); }
 
 .iconfont {
   font-family: 'iconfont' !important;
@@ -41,6 +41,12 @@
 
 .icon-c10:before {
   content: '\e60a'; }
+
+.icon-arrow-left:before {
+  content: '\e64f'; }
+
+.icon-arrow-right:before {
+  content: '\e631'; }
 
 .App {
   font-size: 24px; }
@@ -151,7 +157,10 @@
 
 .chart .time-bar {
   text-align: center; }
+  .chart .time-bar i {
+    font-size: 1.5rem; }
   .chart .time-bar input {
+    font-size: 1.5rem;
     border: 0; }
 
 .chart #myCharts {

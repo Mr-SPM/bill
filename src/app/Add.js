@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Categories from '../components/Categories';
-import store from '../services/localStorage';
+// import store from '../services/localStorage';
+import DB from '../services/db';
 
 const dateFormat = date => {
   let list = date.split('/');
@@ -88,7 +89,7 @@ class Add extends Component {
       categoryId: this.state.categoryId,
       use: this.state.use
     };
-    store.add(req);
+    DB.add(req);
     this.props.history.push('/');
   };
   render() {
