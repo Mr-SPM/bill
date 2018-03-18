@@ -135,7 +135,7 @@ const dbOp = {
       op.onsuccess = e => {
         const res = e.target.result;
         if (res) {
-          result.push({ key: res.key, value: res.value });
+          result.push({ primaryKey:res.primaryKey, key: res.key, value: res.value });
           res.continue();
         } else {
           resolve(result);

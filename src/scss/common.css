@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'iconfont';
   /* project id 591567 */
-  src: url("//at.alicdn.com/t/font_591567_sq0kado2egue4s4i.eot");
-  src: url("//at.alicdn.com/t/font_591567_sq0kado2egue4s4i.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_591567_sq0kado2egue4s4i.woff") format("woff"), url("//at.alicdn.com/t/font_591567_sq0kado2egue4s4i.ttf") format("truetype"), url("//at.alicdn.com/t/font_591567_sq0kado2egue4s4i.svg#iconfont") format("svg"); }
+  src: url("//at.alicdn.com/t/font_591567_9s0atv96j3y2e29.eot");
+  src: url("//at.alicdn.com/t/font_591567_9s0atv96j3y2e29.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_591567_9s0atv96j3y2e29.woff") format("woff"), url("//at.alicdn.com/t/font_591567_9s0atv96j3y2e29.ttf") format("truetype"), url("//at.alicdn.com/t/font_591567_9s0atv96j3y2e29.svg#iconfont") format("svg"); }
 
 .iconfont {
   font-family: 'iconfont' !important;
@@ -11,6 +11,15 @@
   -webkit-font-smoothing: antialiased;
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale; }
+
+.icon-chart:before {
+  content: '\e60d'; }
+
+.icon-add:before {
+  content: '\e60f'; }
+
+.icon-content:before {
+  content: '\e60e'; }
 
 .icon-c1:before {
   content: '\e60b'; }
@@ -139,7 +148,8 @@
   color: #fff;
   padding-top: 10px; }
   .calculator .price-ctn {
-    text-align: right; }
+    text-align: right;
+    padding-right: 0 15px; }
     .calculator .price-ctn .processing {
       height: 16px;
       font-size: 12px; }
@@ -148,56 +158,108 @@
       font-size: 24px; }
   .calculator .facker-btn {
     border: 0;
-    height: 30px;
+    height: 48px;
     background-color: inherit;
     color: #fff;
     width: 25%;
     display: inline-block;
     cursor: pointer; }
 
-.chart .time-bar {
+.time-bar {
+  font-size: 1.5rem;
   text-align: center; }
-  .chart .time-bar i {
+  .time-bar i {
     font-size: 1.5rem; }
-  .chart .time-bar input {
+  .time-bar input {
     font-size: 1.5rem;
     border: 0; }
+  .time-bar .fr-item {
+    float: right; }
+
+.top-ctn {
+  display: flex;
+  align-items: center;
+  text-align: right;
+  margin-top: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  line-height: 20px;
+  padding: 5px 15px;
+  background-color: beige;
+  border-bottom: 1px solid #333; }
+  .top-ctn.lg-top {
+    height: 4rem; }
+    .top-ctn.lg-top input.time-inp {
+      float: left;
+      text-align: left;
+      background-color: inherit;
+      border: 0;
+      font-size: 1.5rem; }
+      .top-ctn.lg-top input.time-inp:hover {
+        border: 0; }
+    .top-ctn.lg-top .data-price {
+      float: right;
+      font-size: 1.25rem;
+      font-weight: bold; }
+  .top-ctn .data-title {
+    font-size: 20px;
+    color: burlywood; }
+  .top-ctn .data-price {
+    flex: auto;
+    display: inline-block;
+    padding-left: 20px;
+    font-size: 1rem;
+    color: #28a745; }
+    .top-ctn .data-price.red {
+      color: red; }
 
 .chart #myCharts {
   height: 400px;
   width: 100%; }
 
-.chart .data-ctn {
-  padding: 0 15px; }
-  .chart .data-ctn .top-ctn {
-    text-align: right;
-    margin-top: 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    line-height: 20px;
+.chart .data-ctn .detail-ctn ul {
+  padding: 0; }
+  .chart .data-ctn .detail-ctn ul li {
     padding: 5px 15px;
-    background-color: beige;
-    border-bottom: 1px solid #333; }
-    .chart .data-ctn .top-ctn .data-title {
-      font-size: 20px;
-      color: burlywood; }
-    .chart .data-ctn .top-ctn .data-price {
+    list-style: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 16px;
+    background-color: #f2f2f2; }
+    .chart .data-ctn .detail-ctn ul li .float-r {
+      float: right; }
+  .chart .data-ctn .detail-ctn ul li + li {
+    border-top: 1px dotted slateblue; }
+
+.list-group {
+  padding: 5px 15px !important;
+  background-color: rgba(123, 104, 238, 0.3);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px; }
+  .list-group .list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0; }
+    .list-group .list-item span {
       display: inline-block;
-      padding-left: 20px;
-      font-size: 12px;
-      color: greenyellow; }
-      .chart .data-ctn .top-ctn .data-price.red {
-        color: red; }
-  .chart .data-ctn .detail-ctn ul {
-    padding: 0; }
-    .chart .data-ctn .detail-ctn ul li {
-      padding: 5px 15px;
-      list-style: none;
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
-      font-size: 16px;
-      background-color: #f2f2f2; }
-      .chart .data-ctn .detail-ctn ul li .float-r {
-        float: right; }
-    .chart .data-ctn .detail-ctn ul li + li {
-      border-top: 1px dotted slateblue; }
+      width: 33.33%; }
+      .list-group .list-item span:nth-child(1) {
+        font-size: 1.5rem;
+        font-weight: bold; }
+        .list-group .list-item span:nth-child(1) i {
+          color: #fd7e14;
+          font-size: 1.5rem;
+          padding-right: 5px; }
+      .list-group .list-item span:nth-child(2) {
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+        padding: 0px 5px;
+        white-space: nowrap; }
+      .list-group .list-item span:nth-child(3) {
+        text-align: right;
+        color: #17a2b8;
+        font-weight: bold; }
+  .list-group .list-item + .list-item {
+    border-top: 1px solid #ccc; }
