@@ -53,7 +53,7 @@ class Content extends Component {
           <div className="list-item" key={item.primaryKey}>
             <span className="title">
               <i className={"iconfont icon-c"+ item.value.categoryId}></i>
-              {categoryMap[item.value.categoryId]}
+              {categoryMap[item.value.categoryId-1]}
             </span>
             <span>{item.value.use}</span>
             <span>￥{item.value.price}</span>

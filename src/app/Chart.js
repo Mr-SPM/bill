@@ -58,15 +58,22 @@ class Chart extends Component {
       }
     });
     let dataForShow = [];
+    let dataForShow2 = [];
     for (let item in detail) {
-      dataForShow.push({
+      if (item !== 'Income') {
+        dataForShow.push({
+          name: item,
+          value: detail[item]
+        });
+      }
+      dataForShow2.push({
         name: item,
         value: detail[item]
       });
     }
     var myCharts = echarts.init(document.getElementById('myCharts'));
     myCharts.setOption({
-      // backgroundColor: '#2c343c',
+      backgroundColor: '#f8f9fa',
       title: {
         text: '支出',
         subtext: '￥' + pay.toFixed(2),
@@ -112,7 +119,7 @@ class Chart extends Component {
     this.setState({
       income,
       pay,
-      detail: dataForShow,
+      detail: dataForShow2,
       time: time || moment().format('YYYY-MM')
     });
   };
@@ -169,7 +176,7 @@ class Chart extends Component {
               {this.state.detail.map((item, index) => {
                 return (
                   <li key={index}>
-                    <span>{item.name}</span>
+                    <span className="bold">{item.name}</span>
                     <span className="float-r">￥{item.value.toFixed(2)}</span>
                   </li>
                 );
