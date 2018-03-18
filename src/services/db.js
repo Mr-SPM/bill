@@ -176,6 +176,17 @@ const dbOp = {
     }
     // 调用openCursor方法
     return this.openCursor(indexData, filterRange);
+  },
+  delete(store, key) {
+    return new Promise((resolve, reject) => {
+      const op = store.delete(key);
+      op.onsuccess = e => {
+        resolve(true);
+      };
+      op.onerror = e => {
+        reject(false);
+      };
+    });
   }
 };
 
@@ -207,5 +218,9 @@ export default {
   async indexFilter(name, range) {
     const store = await dbOp.openStore();
     return dbOp.indexFilter(store, name, range);
+  },
+  async delete(key) {
+    const store = await dbOp.openStore();
+    return dbOp.delete(store, key);
   }
 };
