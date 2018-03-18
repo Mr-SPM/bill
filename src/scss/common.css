@@ -149,7 +149,7 @@
   padding-top: 10px; }
   .calculator .price-ctn {
     text-align: right;
-    padding-right: 0 15px; }
+    padding: 0 15px; }
     .calculator .price-ctn .processing {
       height: 16px;
       font-size: 12px; }
