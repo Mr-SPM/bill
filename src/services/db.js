@@ -91,9 +91,9 @@ const dbOp = {
     let transaction = db.transaction(name, type ? 'readwrite' : 'readonly');
     return transaction.objectStore(name);
   },
-  openStore: async function(type) {
+  openStore: async function (type) {
     const db = await this.openDB(DB_VERSION);
-    const store = await this.getStoreByName(db, DB_Store_NAME, type);
+    const store = this.getStoreByName(db, DB_Store_NAME, type);
     return store;
   },
   get(store, key) {
@@ -135,7 +135,7 @@ const dbOp = {
       op.onsuccess = e => {
         const res = e.target.result;
         if (res) {
-          result.push({ primaryKey:res.primaryKey, key: res.key, value: res.value });
+          result.push({ primaryKey: res.primaryKey, key: res.key, value: res.value });
           res.continue();
         } else {
           resolve(result);
