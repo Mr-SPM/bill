@@ -43,10 +43,15 @@ class Categories extends Component {
           id: nextProps.defaultId,
           list: res.data,
           useList: res.data[this.props.defaultId - 1].children,
-          use: nextProps.defaultUse || res.data[this.props.defaultId - 1].children[0]
+          use:
+            nextProps.defaultUse ||
+            res.data[this.props.defaultId - 1].children[0]
         });
         if (this.props.defaultUse === '') {
-          _this.props.clickFunc(1, res.data[this.props.defaultId - 1].children[0]);
+          _this.props.clickFunc(
+            1,
+            res.data[this.props.defaultId - 1].children[0]
+          );
         }
       });
       // this.setState({
@@ -58,14 +63,28 @@ class Categories extends Component {
         id: nextProps.defaultId,
         use: nextProps.defaultUse,
         useList: this.state.list[nextProps.defaultId - 1].children
-      })
+      });
     }
   }
-  // componentDidMount() {
-  //   let _this = this;
-
-
-  // }
+  componentDidMount() {
+    let _this = this;
+    getCategories().then(res => {
+      console.log(res);
+      _this.setState({
+        id: this.props.defaultId,
+        list: res.data,
+        useList: res.data[this.props.defaultId - 1].children,
+        use:
+        this.props.defaultUse || res.data[this.props.defaultId - 1].children[0]
+      });
+      if (this.props.defaultUse === '') {
+        _this.props.clickFunc(
+          1,
+          res.data[this.props.defaultId - 1].children[0]
+        );
+      }
+    });
+  }
   render() {
     const _this = this;
     const categoryList = this.state.list.map((item, index) => {

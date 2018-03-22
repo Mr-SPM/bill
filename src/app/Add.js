@@ -24,6 +24,10 @@ class Add extends Component {
       use: '',
       primaryKey: ''
     };
+    this.req = {
+      categoryId: 1,
+      use:''
+    };
   }
   handleChange = (type, e) => {
     this.setState({
@@ -31,10 +35,12 @@ class Add extends Component {
     });
   };
   categoryIdChange = (id, use) => {
-    this.setState({
-      categoryId: id,
-      use: use
-    });
+    // this.setState({
+    //   categoryId: id,
+    //   use: use
+    // });
+    this.req.categoryId = id;
+    this.req.use = use;                         
   };
   numberClick = e => {
     let temp = this.state.input;
@@ -87,8 +93,8 @@ class Add extends Component {
     let req = {
       time: this.state.time || new Date().toLocaleDateString(),
       price: this.state.price,
-      categoryId: this.state.categoryId,
-      use: this.state.use
+      categoryId: this.req.categoryId,
+      use: this.req.use
     };
     if (this.state.primaryKey !== '') {
       console.log(this.state.primaryKey);
@@ -109,6 +115,8 @@ class Add extends Component {
           use: res.use,
           primaryKey: this.props.location.state.primaryKey
         })
+        this.req.categoryId = res.categoryId;
+        this.req.use = res.use;
       })
     }
   }
