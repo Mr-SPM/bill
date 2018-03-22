@@ -200,7 +200,7 @@ export default {
     return dbOp.add(store, obj);
   },
   async get(key) {
-    const store = await dbOp.openStore(true);
+    const store = await dbOp.openStore();
     return dbOp.get(store, key);
   },
   async put(key, obj) {
@@ -208,11 +208,11 @@ export default {
     return dbOp.put(store, key, obj);
   },
   async openCursor() {
-    const store = await dbOp.openStore(true);
+    const store = await dbOp.openStore();
     return dbOp.openCursor(store);
   },
   async indexGet(name, key) {
-    const store = await dbOp.openStore(true);
+    const store = await dbOp.openStore();
     return dbOp.indexGet(store, name, key);
   },
   async indexFilter(name, range) {
@@ -220,7 +220,7 @@ export default {
     return dbOp.indexFilter(store, name, range);
   },
   async delete(key) {
-    const store = await dbOp.openStore();
+    const store = await dbOp.openStore(true);
     return dbOp.delete(store, key);
   }
 };
