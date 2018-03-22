@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DB from '../services/db';
 import moment from 'moment';
 import categoryMap from '../services/categoriesmap';
+// import { BrowserRouter as Router } from 'react-router-dom';
 let originPageX = 0;
 class Content extends Component {
   constructor(props) {
@@ -62,9 +63,15 @@ class Content extends Component {
     });
   }
   deleteItem = async (primaryKey) => {
-    const rs =DB.delete(primaryKey);
+    const rs = await DB.delete(primaryKey);
     console.log(rs);
     this.initData();
+  }
+  editItem = (primaryKey) => {
+    this.props.history.push({
+      pathname: '/add',
+      state: { primaryKey }
+    });
   }
   componentDidMount() {
     this.initData();
@@ -79,15 +86,15 @@ class Content extends Component {
         if (_this.state.choose && _this.state.choose.primaryKey === item.primaryKey) {
           button =
             <div>
-              <i className="iconfont icon-edit"></i>
-            <i className="iconfont icon-delete" onClick={this.deleteItem.bind(this,item.primaryKey)}></i>
+              <i className="iconfont icon-edit" onClick={this.editItem.bind(this, item.primaryKey)}></i>
+              <i className="iconfont icon-delete" onClick={this.deleteItem.bind(this, item.primaryKey)}></i>
             </div>
         } else {
           button = <i className="iconfont icon-more"></i>
         }
         return (
           <div className="list-item" key={item.primaryKey} onTouchStart={this.handleMoveStart} onTouchMove={this.handleMove.bind(this, index)} onClick={this.handleChoose.bind(this, index)}>
-            <div className={_this.state.choose && item.primaryKey === _this.state.choose.primaryKey ? 'actived clearfix':'normal clearfix'} id={'list-item' + item.primaryKey} >
+            <div className={_this.state.choose && item.primaryKey === _this.state.choose.primaryKey ? 'actived clearfix' : 'normal clearfix'} id={'list-item' + item.primaryKey} >
               {button}
             </div>
             <span className="title">
@@ -113,6 +120,7 @@ class Content extends Component {
           <span className="data-price">￥{this.state.sum}</span>
         </div>
         <div className="list-group flex-content">
+
           {content}
         </div>
       </div>

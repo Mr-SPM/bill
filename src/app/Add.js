@@ -21,7 +21,8 @@ class Add extends Component {
       time: dateFormat(new Date().toLocaleDateString()),
       price: '0',
       categoryId: 1,
-      use: ''
+      use: '',
+      primaryKey: ''
     };
   }
   handleChange = (type, e) => {
@@ -89,9 +90,28 @@ class Add extends Component {
       categoryId: this.state.categoryId,
       use: this.state.use
     };
-    DB.add(req);
+    if (this.state.primaryKey !== '') {
+      console.log(this.state.primaryKey);
+      DB.put(req, this.state.primaryKey);
+    } else {
+      DB.add(req);
+    }
+
     this.props.history.push('/');
   };
+  componentDidMount() {
+    if (this.props.location.state && this.props.location.state.primaryKey) {
+      DB.get(this.props.location.state.primaryKey).then((res) => {
+        this.setState({
+          categoryId: res.categoryId,
+          price: res.price,
+          time: res.time,
+          use: res.use,
+          primaryKey: this.props.location.state.primaryKey
+        })
+      })
+    }
+  }
   render() {
     return (
       <div className="flex-column inherit-all">
@@ -126,7 +146,7 @@ class Add extends Component {
             </div>
           </div> */}
           <Categories
-            defaultId={this.state.categoryId}
+            defaultId={this.state.categoryId} defaultUse={this.state.use}
             clickFunc={this.categoryIdChange.bind(this)}
           />
         </div>

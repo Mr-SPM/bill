@@ -34,15 +34,24 @@ class Categories extends Component {
     });
     this.props.clickFunc(this.state.id, e.target.innerHTML);
   };
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      id: nextProps.defaultId,
+      use: nextProps.defaultUse
+    })
+  }
   componentDidMount() {
     let _this = this;
     getCategories().then(res => {
+      console.log(res);
       _this.setState({
         list: res.data,
         useList: res.data[0].children,
         use: res.data[0].children[0]
       });
-      _this.props.clickFunc(1,res.data[0].children[0]);
+      if (this.props.defaultUse === '') {
+        _this.props.clickFunc(1,res.data[0].children[0]);
+      }
     });
   }
   render() {
