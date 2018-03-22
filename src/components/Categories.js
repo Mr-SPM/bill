@@ -36,10 +36,23 @@ class Categories extends Component {
   };
   componentWillReceiveProps(nextProps) {
     if (this.state.list.length === 0) {
-      this.setState({
-        id: nextProps.defaultId,
-        use: nextProps.defaultUse
+      let _this = this;
+      getCategories().then(res => {
+        console.log(res);
+        _this.setState({
+          id: nextProps.defaultId,
+          list: res.data,
+          useList: res.data[this.props.defaultId - 1].children,
+          use: nextProps.defaultUse || res.data[this.props.defaultId - 1].children[0]
+        });
+        if (this.props.defaultUse === '') {
+          _this.props.clickFunc(1, res.data[this.props.defaultId - 1].children[0]);
+        }
       });
+      // this.setState({
+      //   id: nextProps.defaultId,
+      //   use: nextProps.defaultUse
+      // });
     } else {
       this.setState({
         id: nextProps.defaultId,
@@ -48,21 +61,11 @@ class Categories extends Component {
       })
     }
   }
-  componentDidMount() {
-    let _this = this;
+  // componentDidMount() {
+  //   let _this = this;
 
-    getCategories().then(res => {
-      console.log(res);
-      _this.setState({
-        list: res.data,
-        useList: res.data[this.props.defaultId - 1].children,
-        use: res.data[this.props.defaultId - 1].children[0]
-      });
-      if (this.props.defaultUse === '') {
-        _this.props.clickFunc(1, res.data[this.props.defaultId - 1].children[0]);
-      }
-    });
-  }
+
+  // }
   render() {
     const _this = this;
     const categoryList = this.state.list.map((item, index) => {
